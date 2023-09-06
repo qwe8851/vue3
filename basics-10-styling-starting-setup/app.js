@@ -7,9 +7,9 @@ const app = Vue.createApp({
     };
   },
   computed: {
-    boxAClasses() {
-      return this.boxASelected ? 'active demo' : 'demo'; 
-    },
+    // boxAClasses() {
+    //   return this.boxASelected ? 'active demo' : 'demo'; 
+    // },
     boxBClasses() {
       return this.boxBSelected ? 'active demo' : 'demo'; 
     },
