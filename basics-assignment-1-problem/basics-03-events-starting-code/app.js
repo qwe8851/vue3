@@ -2,15 +2,52 @@ const app = Vue.createApp({
   data() {
     return {
       counter: 0,
-      name: "",
+      name: "", // watch
+      lastName: "",
+      // fullName: "",
     };
   },
+  watch: {
+    // data나 computed 프로퍼티 이름을 watch에 설정하면
+    // 설정된 프로퍼티가 변경될때마다 watch메서드가 vue에 의해 자동실행됨
+    // 그리고 참조하는 프로퍼티의 값을 argument로 전달함
+    /**
+    watch: {
+      name(newValue, oldValue){}
+    }
+    name(value) {
+      this.fullName = !value ? "" : value + ` ${this.lastName}`;
+    },
+    lastName(value) {
+      this.fullName = !value ? "" : this.name + ` ${value}`;
+    },
+     */
+
+    // 아래의 예시처럼 원하는 프로퍼티를 계속 감시해야 할 경우 유용
+    /**
+    counter(value) {
+      this.counter = value > 50 ? 0 : value;
+    },
+    */
+
+    // 다른 예로 특정 테이터가 변경되면 http요청이나 타이머를 재설정하는 등의 경우 유용
+    counter(value) {
+      if (value > 50) {
+        const that = this;
+        setTimeout(function () {
+          that.counter = 0;
+        }, 2000);
+      }
+    },
+  },
   computed: {
-    // 의존성을 인식하고 의존성 중 하나가 변경된 경우에만 재실행
-    // 데이터 프로퍼티처럼 사용 (메서드처럼 사용 X, 호출 X)
+    // 입력을 두개 이상 받는 경우에는 watch보다 computed가 낫다
     fullName() {
-      console.log("running again");
-      return !this.name ? "" : this.name + " Schwarzmüller";
+      if (!this.name && !this.lastName) {
+        return "";
+      } else {
+        return this.name + " " + this.lastName;
+      }
     },
   },
   methods: {
@@ -20,16 +57,9 @@ const app = Vue.createApp({
     reduce(num) {
       this.counter -= num;
     },
-    // setName() {
-    //   this.name = e.target.value;
-    // },
     resetInput() {
       this.name = "";
     },
-    // outputFullName(){
-    //   console.log("running again");
-    //   return !this.name ? '' : this.name + " Schwarzmüller";
-    // },
   },
 });
 
