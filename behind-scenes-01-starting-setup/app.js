@@ -14,6 +14,37 @@ const app = Vue.createApp({
       this.message = this.$refs.userText.value;
     },
   },
+  // 디버깅으로 확인 가능 
+  beforeCreate() {
+    console.log("beforeCreate");
+  },
+  created() {
+    console.log("created");
+  },
+  beforeMount() {
+    console.log("beforeMount");
+  },
+  mounted() {
+    console.log("mounted");
+  },
+  // 업데이트 될 경우
+  beforeUpdate() {
+    console.log("beforeUpdate");
+  },
+  updated() {
+    console.log("updated");
+  },
+  // 마운트 해제 시 
+  beforeUnmount() {
+    console.log("beforeUnmount");
+  },
+  unmounted() {
+    console.log("unmounted");
+  },
 });
 
 app.mount('#app');
+
+setTimeout(() => {
+  app.unmount();
+}, 3000);
