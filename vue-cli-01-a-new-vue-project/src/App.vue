@@ -2,7 +2,7 @@
 <section>
     <h2>My Friends</h2>
     <ul>
-        <li></li>
+        <friend-contact />
     </ul>
 </section>
 </template>
