@@ -4,7 +4,12 @@
         <h1>My Friends</h1>
     </header>
     <ul>
-        <friend-contact />
+        <friend-contact
+            name="name"
+            phone-number="phone"
+            email-address="email"
+            is-favorite="0"
+        />
     </ul>
 </section>
 </template>
