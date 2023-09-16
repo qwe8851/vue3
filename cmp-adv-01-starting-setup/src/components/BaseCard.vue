@@ -1,6 +1,6 @@
 <template>
     <section>
-        <header>
+        <header v-if="$slots.header">
             <slot name="header"></slot>
         </header>
         <slot></slot>
@@ -9,7 +9,9 @@
 
 <script>
 export default{
-    
+    mounted(){
+        console.log(this.$slots.header);
+    }
 }
 </script>
 
